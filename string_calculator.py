@@ -7,8 +7,10 @@ class StringCalculator:
             return 0
 
         total = 0
+        numeric_list = text.split(',')
 
-        if text.isdigit():
-            total += int(text)
+        for element in numeric_list:
+            if element.isdigit():
+                total += int(element)
 
         return total

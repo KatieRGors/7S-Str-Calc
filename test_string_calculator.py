@@ -28,3 +28,27 @@ def test_one_element_all_valid():
     input_text = "1"
     expected_output = 1
     check_calculator(input_text, expected_output)
+
+
+def test_one_element_none_valid():
+    input_text = "a"
+    expected_output = 0
+    check_calculator(input_text, expected_output)
+
+
+def test_two_elements_all_valid():
+    input_text = "1,1"
+    expected_output = 2
+    check_calculator(input_text, expected_output)
+
+
+def test_three_elements_all_valid():
+    input_text = "1,2,5"
+    expected_output = 8
+    check_calculator(input_text, expected_output)
+
+
+def test_three_elements_some_ivalid():
+    input_text = "\n,a,5"
+    expected_output = 5
+    check_calculator(input_text, expected_output)
