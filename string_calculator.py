@@ -3,4 +3,12 @@ class StringCalculator:
 
     def Add(self, text):
         """ Adds together all delimited numbers in a string"""
-        return 0
+        if not isinstance(text, str):
+            return 0
+
+        total = 0
+
+        if text.isdigit():
+            total += int(text)
+
+        return total
