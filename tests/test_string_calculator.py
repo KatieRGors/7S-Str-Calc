@@ -1,3 +1,5 @@
+import pytest
+
 from string_calculator import StringCalculator
 
 
@@ -100,3 +102,24 @@ def test_three_elements_with_custom_delimiter_at():
     input_text = "//@\n2@3@8"
     expected_output = 13
     check_calculator(input_text, expected_output)
+
+
+# PART 4
+
+def test_one_element_with_negative():
+    input_text = "-1"
+    with pytest.raises(Exception):
+        StringCalculator().Add(input_text)
+
+
+def test_three_elements_with_negative():
+    input_text = "1,-1,100"
+    with pytest.raises(Exception):
+        StringCalculator().Add(input_text)
+
+
+def test_three_elements_with_float():
+    input_text = "1,1.5,100"
+    expected_output = 101
+    check_calculator(input_text, expected_output)
+

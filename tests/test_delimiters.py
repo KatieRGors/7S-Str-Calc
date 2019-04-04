@@ -1,5 +1,6 @@
 from string_calculator import get_delimiter
 
+
 # PART 3
 def test_delimiter_no_string():
     input_text = None
