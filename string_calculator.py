@@ -1,7 +1,8 @@
 import re
+import logging
+import sys
 
 MAX_ADDITION_PARAM = 1000
-MIN_ADDITION_PARAM = 0
 
 DEFAULT_DELIMITER = ','
 DELIMITER_DEFINITION_BEGINNING = '//'
@@ -32,7 +33,7 @@ class StringCalculator:
     def Add(self, text):
         """
         Adds together all unsigned delimited integers in a string and returns it.
-        Delimiter is in the form: //[delimiter]\n
+        Custom delimiters can be used in the form: //[delimiter]\n
         Multiples of a delimiter can be used as a delimiter, eg. //***\n
         Multiple characters, separated by a comma, can be used as a delimiter.
         eg. //$,@\n
@@ -59,12 +60,27 @@ class StringCalculator:
 
             try:
                 number = int(sanitized_element)
-
-                if number < MIN_ADDITION_PARAM:
+                if number < 0:
                     raise Exception("Negatives not allowed. You entered: " + sanitized_element)
                 elif number <= MAX_ADDITION_PARAM:
                     total += int(sanitized_element)
-            except ValueError:
-                print("Number was invalid")
+            except ValueError as e:
+                logging.debug(e)
 
         return total
+
+
+def main():
+    calculator = StringCalculator()
+    print("Enter a comma delimited list of numbers to add together.")
+    print("If you want to use a custom delimiter, precede your list with: //[delimiter]\\n")
+    print("This custom delimiter can be one character, multiples of that character, or multiple characters"
+          " separated by a comma. The result will be calculated when ctrl-D is pressed.\n")
+    print("Please enter a list of numbers to add:")
+    text = sys.stdin.read()
+    result = calculator.Add(text)
+    print(result)
+
+
+if __name__ == "__main__":
+    main()
