@@ -6,6 +6,8 @@ def check_calculator(input_text, expected_output):
     assert expected_output == actual_output
 
 
+# PART 1
+
 def test_empty_string():
     input_text = ""
     expected_output = 0
@@ -54,6 +56,8 @@ def test_three_elements_some_invalid():
     check_calculator(input_text, expected_output)
 
 
+# PART 2
+
 def test_three_elements_with_post_newlines_all_valid():
     input_text = "1\n,2,3"
     expected_output = 6
@@ -75,4 +79,24 @@ def test_two_elements_one_larger_than_1000():
 def test_two_elements_one_equal_to_1000():
     input_text = "2,1000"
     expected_output = 1002
+    check_calculator(input_text, expected_output)
+
+
+# PART 3
+
+def test_three_elements_with_custom_delimiter_semicolon():
+    input_text = "//;\n1;3;4"
+    expected_output = 8
+    check_calculator(input_text, expected_output)
+
+
+def test_three_elements_with_custom_delimiter_dollar():
+    input_text = "//$\n1$2$3"
+    expected_output = 6
+    check_calculator(input_text, expected_output)
+
+
+def test_three_elements_with_custom_delimiter_at():
+    input_text = "//@\n2@3@8"
+    expected_output = 13
     check_calculator(input_text, expected_output)
