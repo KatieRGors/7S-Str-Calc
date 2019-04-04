@@ -13,8 +13,7 @@ def get_delimiter(text):
     """
     Returns the delimiter parsed from given text. Delimiter is in the form
     //[delimiter]\n
-    If no delimiter is found, the default delimiter is a comma
-    / and \n cannot be used as delimiters
+    If no delimiter is found, the default delimiter is a comma.
     """
     if isinstance(text, str):
         result = re.search(DELIMITER_REGEX, text)
@@ -31,13 +30,29 @@ class StringCalculator:
     """ A simple string calculator that performs operations on numbers in a string. """
 
     def Add(self, text):
-        """ Adds together all delimited numbers in a string"""
+        """
+        Adds together all unsigned delimited integers in a string and returns it.
+        Delimiter is in the form: //[delimiter]\n
+        Multiples of a delimiter can be used as a delimiter, eg. //***\n
+        Multiple characters, separated by a comma, can be used as a delimiter.
+        eg. //$,@\n
+        Characters / and \n cannot be used as delimiters
+        """
         if not isinstance(text, str):
             return 0
 
         total = 0
         delim = get_delimiter(text)
-        numeric_list = re.sub(DELIMITER_REGEX, '', text, 1).split(delim)
+        sanitized_text = re.sub(DELIMITER_REGEX, '', text, 1)
+
+        # checks if delimiter contains multiple delimiters or one of arbitrary length
+        if delim == len(delim) * delim[0]:
+            numeric_list = sanitized_text.split(delim)
+        else:
+            # converts delimiter to regex if there are multiples, and then splits
+            # the string based on the regex
+            delim_pattern = re.compile(re.escape(delim).replace(',', '|'))
+            numeric_list = re.split(delim_pattern, sanitized_text)
 
         for element in numeric_list:
             sanitized_element = element.replace('\n', '')

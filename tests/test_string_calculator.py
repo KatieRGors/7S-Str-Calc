@@ -130,3 +130,14 @@ def test_multiple_elements_with_longer_delimiter():
     expected_output = 6
     check_calculator(input_text, expected_output)
 
+
+def test_multiple_delimiters():
+    input_text = "//$,@\n1$2@3"
+    expected_output = 6
+    check_calculator(input_text, expected_output)
+
+
+def test_multiple_delimiters_with_multiples():
+    input_text = "//$,@@@\n1$2@@@3"
+    expected_output = 6
+    check_calculator(input_text, expected_output)
