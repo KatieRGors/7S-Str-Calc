@@ -54,3 +54,17 @@ def test_delimiter_at_string_malformed_extra_newline():
     input_text = "//\n@\n"
     expected_delimiter = ','
     assert expected_delimiter == get_delimiter(input_text)
+
+
+#BONUS 2
+
+def test_delimiter_star_multiples():
+    input_text = "//***\n"
+    expected_delimiter = '***'
+    assert expected_delimiter == get_delimiter(input_text)
+
+
+def test_delimiter_comma_multiples():
+    input_text = "//,,,,\n"
+    expected_delimiter = ',,,,'
+    assert expected_delimiter == get_delimiter(input_text)

@@ -123,3 +123,10 @@ def test_three_elements_with_float():
     expected_output = 101
     check_calculator(input_text, expected_output)
 
+
+# BONUS 2
+def test_multiple_elements_with_longer_delimiter():
+    input_text = "//***\n1***2***3"
+    expected_output = 6
+    check_calculator(input_text, expected_output)
+

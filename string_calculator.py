@@ -6,7 +6,7 @@ MIN_ADDITION_PARAM = 0
 DEFAULT_DELIMITER = ','
 DELIMITER_DEFINITION_BEGINNING = '//'
 DELIMITER_DEFINITION_ENDING = '\n'
-DELIMITER_REGEX = r'^//[^\d\n/]\n'
+DELIMITER_REGEX = r'^//[^\d\n/]+\n'
 
 
 def get_delimiter(text):
@@ -14,7 +14,7 @@ def get_delimiter(text):
     Returns the delimiter parsed from given text. Delimiter is in the form
     //[delimiter]\n
     If no delimiter is found, the default delimiter is a comma
-    // and \n cannot be used as delimiters
+    / and \n cannot be used as delimiters
     """
     if isinstance(text, str):
         result = re.search(DELIMITER_REGEX, text)
