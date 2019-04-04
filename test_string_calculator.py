@@ -48,7 +48,31 @@ def test_three_elements_all_valid():
     check_calculator(input_text, expected_output)
 
 
-def test_three_elements_some_ivalid():
+def test_three_elements_some_invalid():
     input_text = "\n,a,5"
     expected_output = 5
+    check_calculator(input_text, expected_output)
+
+
+def test_three_elements_with_post_newlines_all_valid():
+    input_text = "1\n,2,3"
+    expected_output = 6
+    check_calculator(input_text, expected_output)
+
+
+def test_three_elements_with_pre_newlines_all_valid():
+    input_text = "1,\n2,4"
+    expected_output = 7
+    check_calculator(input_text, expected_output)
+
+
+def test_two_elements_one_larger_than_1000():
+    input_text = "2,1001"
+    expected_output = 2
+    check_calculator(input_text, expected_output)
+
+
+def test_two_elements_one_equal_to_1000():
+    input_text = "2,1000"
+    expected_output = 1002
     check_calculator(input_text, expected_output)

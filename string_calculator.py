@@ -7,10 +7,12 @@ class StringCalculator:
             return 0
 
         total = 0
-        numeric_list = text.split(',')
+        sanitized_text = text.replace('\n', '')
+        numeric_list = sanitized_text.split(',')
 
+        # todo support negatives? floats?
         for element in numeric_list:
-            if element.isdigit():
+            if element.isdigit() and int(element) <= 1000:
                 total += int(element)
 
         return total
